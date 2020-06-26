@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="gitHubViewModel"
+            type="com.navi.closedpr.viewmodel.GitHubViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/dimen_12dp"
+        android:layout_marginEnd="@dimen/dimen_12dp"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pullRequestRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            app:populatePullRequest="@{gitHubViewModel.pullRequestLiveData.data}" />
+
+        <TextView
+            android:id="@+id/errorTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/error_no_pr"
+            android:textSize="@dimen/dimen_16sp"
+            android:visibility="@{gitHubViewModel.pullRequestLiveData.data.empty?View.VISIBLE:View.GONE}" />
+    </FrameLayout>
+</layout>
