@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ClosedPr</string>
+    <string name="hint_user_name">Username</string>
+    <string name="hint_repo_name">Repository</string>
+    <string name="get_closed_pr">Get Closed PR</string>
+    <string name="error_username">enter username</string>
+    <string name="error_reponame">enter repository name</string>
+    <string name="error_no_pr">"No Pull Request Found"</string>
+    <string name="created_at">Created At :\u0020</string>
+    <string name="closed_at">Closed At :\u0020</string>
 </resources>
