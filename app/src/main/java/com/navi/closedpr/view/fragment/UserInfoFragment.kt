@@ -31,8 +31,8 @@ class UserInfoFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.button -> {
-                val userName = usernameEditText.text.toString()
-                val repoName = reponameEditText.text.toString()
+                val userName = usernameEditText.text.toString().trim()
+                val repoName = reponameEditText.text.toString().trim()
                 if (gitHubViewModel.isValidUserData(userName, repoName)) {
                     baseActivity.launchFragment(PullRequestFragment.newInstance(userName, repoName))
                 } else {
