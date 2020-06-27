@@ -15,11 +15,14 @@ class GitHubViewModel(private val gitHubRepository: GitHubRepository) : ViewMode
     fun getPullRequests(
         userId: String,
         repoName: String,
-        state: String
+        state: String,
+        itemsPerPage: Int,
+        pageNumber: Int
     ) {
         pullRequestLiveData.value = Resource.loading()
         viewModelScope.launch {
-            pullRequestLiveData.value = gitHubRepository.getPullRequests(userId, repoName, state)
+            pullRequestLiveData.value =
+                gitHubRepository.getPullRequests(userId, repoName, state, itemsPerPage, pageNumber)
         }
     }
 

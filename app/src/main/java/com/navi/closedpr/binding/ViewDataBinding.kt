@@ -16,11 +16,15 @@ class ViewDataBinding {
         @JvmStatic
         fun populatePullRequest(
             recyclerView: RecyclerView,
-            pullRequestList: List<PullRequestResponse>?
+            pullRequestList: MutableList<PullRequestResponse>?
         ) {
             if (!pullRequestList.isNullOrEmpty()) {
-                recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-                recyclerView.adapter = PullRequestAdapter(pullRequestList)
+                if (recyclerView.adapter == null) {
+                    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+                    recyclerView.adapter = PullRequestAdapter(pullRequestList)
+                } else {
+                    (recyclerView.adapter as PullRequestAdapter).addMoreData(pullRequestList)
+                }
             }
         }
 

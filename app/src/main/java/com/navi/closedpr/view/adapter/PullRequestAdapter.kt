@@ -10,7 +10,7 @@ import com.navi.closedpr.R
 import com.navi.closedpr.model.response.PullRequestResponse
 
 
-class PullRequestAdapter(private val pullRequestList: List<PullRequestResponse>) :
+class PullRequestAdapter(private val pullRequestList: MutableList<PullRequestResponse>) :
     RecyclerView.Adapter<PullRequestAdapter.PullRequestViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullRequestViewHolder {
@@ -19,7 +19,7 @@ class PullRequestAdapter(private val pullRequestList: List<PullRequestResponse>)
             R.layout.item_pull_request,
             parent,
             false
-        );
+        )
         return PullRequestViewHolder(viewDataBinding)
     }
 
@@ -30,6 +30,12 @@ class PullRequestAdapter(private val pullRequestList: List<PullRequestResponse>)
     override fun onBindViewHolder(holder: PullRequestViewHolder, position: Int) {
         holder.bind(pullRequestList[position])
     }
+
+    fun addMoreData(morePullRequests: List<PullRequestResponse>) {
+        pullRequestList.addAll(morePullRequests)
+        notifyDataSetChanged()
+    }
+
 
     class PullRequestViewHolder(private val binding: ViewDataBinding) :
         RecyclerView.ViewHolder(binding.root) {

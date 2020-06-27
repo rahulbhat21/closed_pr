@@ -10,11 +10,13 @@ class GitHubRepository(private val networkApiInterface: GitHubNetworkApiInterfac
     suspend fun getPullRequests(
         userId: String,
         repoName: String,
-        state: String
+        state: String,
+        itemsPerPage:Int,
+        pageNumber:Int
     ): Resource<List<PullRequestResponse>?> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = networkApiInterface.getPullRequests(userId, repoName, state)
+                val response = networkApiInterface.getPullRequests(userId, repoName, state, itemsPerPage, pageNumber)
                 if (response.isSuccessful) {
                     Resource.success(response.body())
                 } else {

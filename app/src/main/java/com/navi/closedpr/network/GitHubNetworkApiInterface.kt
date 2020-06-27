@@ -10,6 +10,8 @@ interface GitHubNetworkApiInterface {
     @GET("repos/{user_id}/{repo_name}/pulls")
     suspend fun getPullRequests(
         @Path(value = "user_id") userId: String, @Path(value = "repo_name") repoName: String,
-        @Query("state") state: String
+        @Query("state") state: String,
+        @Query("per_page") itemsPerPage: Int,
+        @Query("page") pageNumber: Int
     ): Response<List<PullRequestResponse>>
 }
