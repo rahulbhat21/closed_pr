@@ -9,32 +9,18 @@ data class PullRequestResponse(
     @SerializedName("title")
     val title: String,
     @SerializedName("created_at")
-    private val createdDate: String,
+    val createdDate: String,
     @SerializedName("closed_at")
-    private val closedDate: String,
+    val closedDate: String,
     @SerializedName("user")
     val user: User
 
 ) {
 
-    fun getCreatedDateTime(): String {
+    fun getFormattedDateTime(dateInString: String): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
         sdf.timeZone = TimeZone.getTimeZone("UTC")
-        val date: Date? = sdf.parse(createdDate)
-        val outputFormatTime =
-            SimpleDateFormat("hh:mm a", Locale.ENGLISH)
-        val outputFormatDate =
-            SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
-        date?.let {
-            return outputFormatTime.format(it).plus(" ".plus(outputFormatDate.format(it)))
-        }
-        return ""
-    }
-
-    fun getClosedDateTime(): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
-        sdf.timeZone = TimeZone.getTimeZone("UTC")
-        val date: Date? = sdf.parse(closedDate)
+        val date: Date? = sdf.parse(dateInString)
         val outputFormatTime =
             SimpleDateFormat("hh:mm a", Locale.ENGLISH)
         val outputFormatDate =
