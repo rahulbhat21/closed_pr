@@ -2,6 +2,7 @@ package com.navi.closedpr.model.response
 
 import com.google.gson.annotations.SerializedName
 
+
 data class PullRequestResponse(
     @SerializedName("title")
     val title: String,
