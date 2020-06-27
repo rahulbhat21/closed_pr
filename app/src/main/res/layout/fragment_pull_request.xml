@@ -24,15 +24,5 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_20dp"
             app:populatePullRequest="@{gitHubViewModel.pullRequestLiveData.data}" />
-
-        <TextView
-            android:id="@+id/errorTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/error_no_pr"
-            android:textSize="@dimen/dimen_16sp"
-            android:visibility="@{gitHubViewModel.pullRequestLiveData.data.empty?View.VISIBLE:View.GONE}" />
     </FrameLayout>
 </layout>

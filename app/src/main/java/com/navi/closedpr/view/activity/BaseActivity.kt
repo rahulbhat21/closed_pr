@@ -1,6 +1,7 @@
 package com.navi.closedpr.view.activity
 
 import android.view.View
+import android.view.WindowManager
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -21,6 +22,19 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun updateProgressBar(isLoading: Boolean) {
-        progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
+        progressBar?.visibility = if (isLoading) {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            );
+            View.VISIBLE
+        } else {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            View.GONE
+        }
+    }
+
+    fun isLoading(): Boolean {
+        return progressBar?.visibility == View.VISIBLE
     }
 }
